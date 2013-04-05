@@ -50,7 +50,7 @@ public class FokemonUI implements EntryPoint {
 		  map = new MapView();
 		  RootPanel.get(holderId).add(map.mapPanel);
 		  map.canvas.setFocus(true);
-		  tempView = new CirculatingImagesView();
+		 //tempView = new CirculatingImagesView();
 		 //System.out.println(pokedex.getPokeMap().firstKey().toString());
 		  
 		  
@@ -63,8 +63,6 @@ public class FokemonUI implements EntryPoint {
 		timer.scheduleRepeating(refreshRate);
 	  }
 	  static void doUpdate() {
-		  // update the back canvas, set to front canvas
-		//System.out.println(pokedex.getPokeMap().firstKey().toString());
 		  //map.doUpdate(); 
 		  //tempView.doUpdate();
 		  if(battle!=null){
