@@ -63,7 +63,6 @@ public class MapView extends Composite{
 	    mapPanel.add(canvas);
 	    mapPanel.getElement().getStyle().setPosition(Position.RELATIVE);
 		
-	    doUpdate();
 	    initHandlers();
 	}
 	

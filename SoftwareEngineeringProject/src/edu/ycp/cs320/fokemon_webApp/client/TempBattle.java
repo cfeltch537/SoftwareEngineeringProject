@@ -41,9 +41,9 @@ public class TempBattle {
 		AttackerMove=MoveDataBase.generateMove(MoveName.Spore);
 		DefenderMove=MoveDataBase.generateMove(MoveName.Bite);
 		Attacker=Pokemon.GeneratePokemon(PokeID.Charizard, 50);
-		Attacker.getInfo().setNickname("Charizizzle");
+		Attacker.getInfo().setNickname("Charizard");
 		Defender=Pokemon.GeneratePokemon(PokeID.Pikachu, 35);
-		Defender.getInfo().setNickname("Pikajew");
+		Defender.getInfo().setNickname("Pikachu");
 		Attacker.getMoves().add(AttackerMove);
 		Attacker.getMoves().add(DefenderMove);
 		Attacker.getMoves().add(MoveDataBase.generateMove(MoveName.Thunder_Wave));
