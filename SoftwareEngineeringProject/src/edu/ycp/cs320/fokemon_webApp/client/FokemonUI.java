@@ -49,6 +49,7 @@ public class FokemonUI implements EntryPoint {
 		  createPokedexReader();
 		  map = new MapView();
 		  RootPanel.get(holderId).add(map.mapPanel);
+		  map.canvas.setFocus(true);
 		  tempView = new CirculatingImagesView();
 		 //System.out.println(pokedex.getPokeMap().firstKey().toString());
 		  
@@ -108,6 +109,7 @@ public class FokemonUI implements EntryPoint {
 			  battle = new BattleView(); //Instantiate a BattleView
 			  RootPanel.get(holderId).remove(map.mapPanel);
 			  RootPanel.get(holderId).add(battle.battlePanel);
+			  battle.commandOptions.setFocus(true);
 		  }
 	  }
 }
