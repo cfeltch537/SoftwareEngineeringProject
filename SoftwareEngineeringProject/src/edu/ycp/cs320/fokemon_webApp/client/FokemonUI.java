@@ -22,6 +22,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
+import edu.ycp.cs320.fokemon_webApp.shared.Battle.Battle;
 import edu.ycp.cs320.fokemon_webApp.shared.PokemonClasses.PokedexReader;
 
 
@@ -37,22 +38,19 @@ public class FokemonUI implements EntryPoint {
 	  static final String upgradeMessage = "Your browser does not support the HTML5 Canvas. Please upgrade your browser to view this demo.";
 	
 	  static CirculatingImagesView tempView;
-	  static MapView map;
-	  static BattleView battle;
+	  static MapView mapView;
+	  static BattleView battleView;
 	  private static PokedexReader pokedex;
 	  private PokedexReaderServiceAsync pokedexReaderSvc = GWT.create(PokedexReaderService.class);
 	  static final int refreshRate = 25;
 	  
 	  public void onModuleLoad() {
 	
-
+		  mapView = new MapView();
+		  RootPanel.get(holderId).add(mapView.mapPanel);
+		  mapView.canvas.setFocus(true);
 		  createPokedexReader();
-		  map = new MapView();
-		  RootPanel.get(holderId).add(map.mapPanel);
-		  map.canvas.setFocus(true);
-		 //tempView = new CirculatingImagesView();
-		 //System.out.println(pokedex.getPokeMap().firstKey().toString());
-		  
+		 //tempView = new CirculatingImagesView();	  
 		  
 		  final Timer timer = new Timer() {
 		      @Override
@@ -65,8 +63,8 @@ public class FokemonUI implements EntryPoint {
 	  static void doUpdate() {
 		  //map.doUpdate(); 
 		  //tempView.doUpdate();
-		  if(battle!=null){
-			  battle.doUpdate();
+		  if(battleView!=null&&battleView.test!=null){
+			  battleView.doUpdate();
 		  }
 	  }
 	  
@@ -86,7 +84,7 @@ public class FokemonUI implements EntryPoint {
 		      public void onSuccess(PokedexReader result) {
 		        //updateTable(result);
 		    	  setPokedex(result);
-		    	  battle = new BattleView();
+		    	  battleView = new BattleView();
 
 		      }
 		    };
@@ -104,10 +102,11 @@ public class FokemonUI implements EntryPoint {
 	  public static void startBattle(){//Instantiates BattleView
 		  if(pokedex!=null){
 			// Call joey's create battle function(s); creating instance of a battle
-			  battle = new BattleView(); //Instantiate a BattleView
-			  RootPanel.get(holderId).remove(map.mapPanel);
-			  RootPanel.get(holderId).add(battle.battlePanel);
-			  battle.commandOptions.setFocus(true);
+			  battleView = new BattleView(); //Instantiate a BattleView
+			  battleView.setBattle(Battle.wildPokemonBattle());
+			  RootPanel.get(holderId).remove(mapView.mapPanel);
+			  RootPanel.get(holderId).add(battleView.battlePanel);
+			  battleView.commandOptions.setFocus(true);
 		  }
 	  }
 }
