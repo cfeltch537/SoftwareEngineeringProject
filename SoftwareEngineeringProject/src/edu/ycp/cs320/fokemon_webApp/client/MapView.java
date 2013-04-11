@@ -67,7 +67,7 @@ public class MapView extends Composite{
 	}
 	
 	void doUpdate() {
-		   // update the back canvas, set to fron canvas
+		   // update the back canvas, set to front canvas
 		   draw(backBufferContext, context);  
 		  }
 	
@@ -77,12 +77,12 @@ public class MapView extends Composite{
 		 
 		 //DrawFlooring
 		 for (int height = 0; height < areaList[player.getPlayerLocation().getAreaArrayIndex()].terrain.length; height++) {
-	            for (int width = 0; width < areaList[player.getPlayerLocation().getAreaArrayIndex()].terrain[height].length; width++) {
-	            	if(areaList[player.getPlayerLocation().getAreaArrayIndex()].terrain[height][width].flooring.img!=null){
-	            	img = areaList[player.getPlayerLocation().getAreaArrayIndex()].terrain[height][width].flooring.img;
-	            	context.drawImage((ImageElement) img.getElement().cast(), 16*height, 16*width);
-	            	}
-	            }
+            for (int width = 0; width < areaList[player.getPlayerLocation().getAreaArrayIndex()].terrain[height].length; width++) {
+            	if(areaList[player.getPlayerLocation().getAreaArrayIndex()].terrain[height][width].flooring.img!=null){
+            	img = areaList[player.getPlayerLocation().getAreaArrayIndex()].terrain[height][width].flooring.img;
+            	context.drawImage((ImageElement) img.getElement().cast(), 16*height, 16*width);
+            	}
+            }
 	        }
 		 
 		//InteractableObjects

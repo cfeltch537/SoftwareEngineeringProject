@@ -125,18 +125,19 @@ public class BattleView extends Composite{
 	    img1 = new Image("PokemonSprites/Arena.png");
 	    initHandlers();
 	    
+	    
 	}
 	
 	void setBattle(Battle battle){
 		 //Instantiate Battle
 	    this.battle = battle;
+		draw(battleBackBufferContext, battleContext);
 	    onPokemonShift();
 	}
 	
 	void doUpdate() {
 			// update the back canvas, set to front canvas
 			draw(battleBackBufferContext, battleContext);
-			
 		  }
 	void onPokemonShift(){
 		updatePokemonLabels();
@@ -151,7 +152,6 @@ public class BattleView extends Composite{
     	playerHPBar.doUpdate((double)battle.getUser().getTeam(battle.getUser().getCurrentPokemonIndex()).getStats().getCurHp(), (double)battle.getUser().getTeam(battle.getUser().getCurrentPokemonIndex()).getStats().getMaxHp());
 		opponentHPBar.doUpdate((double)battle.getOpponent().getTeam(battle.getOpponent().getCurrentPokemonIndex()).getStats().getCurHp(), (double)battle.getOpponent().getTeam(battle.getOpponent().getCurrentPokemonIndex()).getStats().getMaxHp());
 		updatePlayerHPLabel();
-		
 		//context.restore();
 		front.drawImage(context.getCanvas(), 0, 0);
 	}
@@ -359,7 +359,10 @@ public class BattleView extends Composite{
 	 }
 	void updatePokemonImages(){
 		 // Player Battling Pokemon
-
+		if(playerPokemon!=null){
+			battlePanel.remove(playerPokemon);
+		}
+		String name = battle.getUser().getTeam(battle.getUser().getCurrentPokemonIndex()).getInfo().getPokeName();
 		playerPokemon = new Image("PokemonSprites/" + battle.getUser().getTeam(battle.getUser().getCurrentPokemonIndex()).getInfo().getPokeName() + ".png");//This should set to a pokemons ID specific Image
 		playerPokemon.setVisible(false);
 		battlePanel.add(playerPokemon);
@@ -368,16 +371,16 @@ public class BattleView extends Composite{
 			@Override
 			public void onLoad(LoadEvent event) {
 				battlePanel.remove(playerPokemon);
-				//battlePanel.getElement().getStyle().setPosition(Position.RELATIVE);
+				battlePanel.getElement().getStyle().setPosition(Position.RELATIVE);
 				battlePanel.add(playerPokemon, width/2 - img2.getWidth()/2 - 120, height/2 - img2.getHeight() - 10);
-				//battlePanel.getElement().getStyle().setPosition(Position.RELATIVE);
+				battlePanel.getElement().getStyle().setPosition(Position.RELATIVE);
 				playerPokemon.setVisible(true);
 			}
 		});
 
 		 // Opponent Battling Pokemon
 		
-		opponentPokemon = new Image("PokemonSprites/" + battle.getOpponent().getTeam(battle.getOpponent().getCurrentPokemonIndex()).getInfo().getPokeName() + ".png");//This should set to a pokemons ID specific Image
+		opponentPokemon = new Image("PokemonSprites/Pikachu.png");//This should set to a pokemons ID specific Image
 		opponentPokemon.setVisible(false);
 		battlePanel.add(opponentPokemon);
 		battlePanel.getElement().getStyle().setPosition(Position.RELATIVE);

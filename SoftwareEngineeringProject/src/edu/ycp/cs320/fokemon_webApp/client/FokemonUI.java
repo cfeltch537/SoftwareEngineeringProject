@@ -63,11 +63,10 @@ public class FokemonUI implements EntryPoint {
 	  static void doUpdate() {
 		  //map.doUpdate(); 
 		  //tempView.doUpdate();
-		  if(battleView!=null&&battleView.test!=null){
+		  if(battleView!=null&&battleView.battle!=null){
 			  battleView.doUpdate();
 		  }
-	  }
-	  
+	  }  
 	  private void createPokedexReader() {
 		    // Initialize the service proxy.
 		    if (pokedexReaderSvc == null) {
@@ -85,13 +84,11 @@ public class FokemonUI implements EntryPoint {
 		        //updateTable(result);
 		    	  setPokedex(result);
 		    	  battleView = new BattleView();
-
 		      }
 		    };
 
 		    // Make the call to the stock price service.
 		    pokedexReaderSvc.readCSV(callback);
-		    //pokedexReaderSvc.readCSV(callback).getPrices(stocks.toArray(new String[0]), callback);
 		  }
 	  public static PokedexReader getPokedex() {
 		return pokedex;
